@@ -26,35 +26,35 @@ model User {
 }
 
 model Recipe {
-  id           String     @id @default(uuid())
-  title        String
-  content      String?
-  image        String?
-  createdAt    DateTime   @default(now())
-  updatedAt    DateTime   @updatedAt
-  author       User       @relation(fields: [authorId], references: [id])
-  authorId     String
-  rating       Float      @default(0)
-  ratedUsers   User[]     @relation("RecipeRatedUsers")
-  ratingsCount Int        @default(0)
-  published    Boolean    @default(false)
-  comments     Comment[]  @relation("CommentPost")
-  category     Category   @relation(fields: [categoryId], references: [id])
-  categoryId   String
-  difficulty   Difficulty
-  description  String?
-  ingredients  String?
-  steps        String?
-  tags         String?
-  servings     Int?
-  time         String?
-  recipe       Recipe?    @relation("GoesWith", fields: [recipeId], references: [id], onDelete: NoAction, onUpdate: NoAction)
-  recipeId     String?
-  goesWith     Recipe[]   @relation("GoesWith")
-  favorites    User[]     @relation("FavoriteRecipes")
-  tips         String?
+  id                     String     @id @default(uuid())
+  title                  String
+  content                String?
+  image                  String?
+  createdAt              DateTime   @default(now())
+  updatedAt              DateTime   @updatedAt
+  author                 User       @relation(fields: [authorId], references: [id])
+  authorId               String
+  rating                 Float      @default(0)
+  ratedUsers             User[]     @relation("RecipeRatedUsers")
+  ratingsCount           Int        @default(0)
+  published              Boolean    @default(false)
+  comments               Comment[]  @relation("CommentPost")
+  category               Category   @relation(fields: [categoryId], references: [id])
+  categoryId             String
+  difficulty             Difficulty
+  description            String?
+  ingredients            String?
+  steps                  String?
+  tags                   String?
+  servings               Int?
+  time                   String?
+  goesWithParentRecipe   Recipe?    @relation("GoesWith", fields: [goesWithParentRecipeId], references: [id], onDelete: NoAction, onUpdate: NoAction)
+  goesWithParentRecipeId String?
+  goesWith               Recipe[]   @relation("GoesWith")
+  favorites              User[]     @relation("FavoriteRecipes")
+  tips                   String?
 
-  @@index([recipeId])
+  @@index([goesWithParentRecipeId])
   @@index([categoryId])
   @@index([authorId])
   @@map("Post")
@@ -67,15 +67,19 @@ enum Difficulty {
 }
 
 model Comment {
-  id        String   @id @default(uuid())
-  content   String
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
-  author    User     @relation(fields: [authorId], references: [id], name: "CommentAuthor")
-  authorId  String
-  post      Recipe   @relation(fields: [postId], references: [id], name: "CommentPost")
-  postId    String
+  id              String    @id @default(uuid())
+  content         String
+  createdAt       DateTime  @default(now())
+  updatedAt       DateTime  @updatedAt
+  author          User      @relation(fields: [authorId], references: [id], name: "CommentAuthor")
+  authorId        String
+  post            Recipe    @relation(fields: [postId], references: [id], name: "CommentPost")
+  postId          String
+  parentComment   Comment?  @relation("SubComment", fields: [parentCommentId], references: [id], onDelete: NoAction, onUpdate: NoAction)
+  parentCommentId String?
+  subComments     Comment[] @relation("SubComment")
 
+  @@index([parentCommentId])
   @@index([authorId])
   @@index([postId])
 }
