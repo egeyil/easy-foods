@@ -4,7 +4,7 @@
 	export let title: string;
 	export let image: string;
 	export let link: string;
-	export let likesCount: number;
+	export let ratingsCount: number;
 	export let liked: boolean;
 	export let category: string = 'Category';
 	export let commentsCount: number = 0;
@@ -50,7 +50,7 @@
 				</div>
 				<div class="mb-1 mt-2 flex items-center gap-2">
 					<div class="flex items-center text-xs text-slate-800 xl:text-sm">
-						{likesCount} likes
+						{ratingsCount} ratings
 					</div>
 					<div class="flex items-center text-xs text-slate-800 xl:text-sm">
 						{commentsCount} comments

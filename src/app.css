@@ -4,16 +4,24 @@
 
 @layer base {
 	a {
-		@apply link-hover-underline transition-colors hover:text-orange-400;
+		@apply transition-colors hover:text-orange-400;
 	}
 
 	nav a {
 		@apply hover:no-underline;
 	}
 
-	header > a {
+	header a {
 		@apply hover:no-underline;
 	}
+
+	/* nav > div > a {
+		@apply py-3.5;
+	} */
+
+	/* nav > div > a > div {
+		@apply ;
+	} */
 }
 
 @layer components {
@@ -24,7 +32,11 @@
 		-webkit-line-clamp: 2;
 		-webkit-box-orient: vertical;
 	}
-	.link-hover-underline {
+	/* .link-hover-underline {
 		@apply decoration-orange-300 decoration-1 underline-offset-4 transition-colors duration-150 hover:text-orange-300 hover:underline;
+	} */
+
+	.dropdown-container:hover .dropdown-content {
+		@apply grid;
 	}
 }
