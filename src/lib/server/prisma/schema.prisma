@@ -1,0 +1,56 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider     = "mysql"
+  url          = env("DATABASE_URL")
+  relationMode = "prisma"
+}
+
+model User {
+  id        String    @id @default(uuid())
+  email     String    @unique
+  name      String
+  password  String
+  bio       String?
+  likedPost Post[]    @relation("PostLikedUsers")
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+  image     String?
+  posts     Post[]
+  comments  Comment[] @relation("CommentAuthor")
+
+  @@index([id])
+}
+
+model Post {
+  id         String    @id @default(uuid())
+  title      String
+  content    String?
+  image      String?
+  createdAt  DateTime  @default(now())
+  updatedAt  DateTime  @updatedAt
+  author     User      @relation(fields: [authorId], references: [id])
+  authorId   String
+  likedUsers User[]    @relation("PostLikedUsers")
+  likesCount Int       @default(0)
+  published  Boolean   @default(false)
+  comments   Comment[] @relation("CommentPost")
+
+  @@index([authorId])
+}
+
+model Comment {
+  id        String   @id @default(uuid())
+  content   String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  author    User     @relation(fields: [authorId], references: [id], name: "CommentAuthor")
+  authorId  String
+  post      Post     @relation(fields: [postId], references: [id], name: "CommentPost")
+  postId    String
+
+  @@index([authorId])
+  @@index([postId])
+}
