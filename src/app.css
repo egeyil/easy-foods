@@ -4,7 +4,7 @@
 
 @layer base {
 	a {
-		@apply transition-colors hover:text-orange-400;
+		@apply transition-colors sm:hover:text-orange-400;
 	}
 
 	nav a {

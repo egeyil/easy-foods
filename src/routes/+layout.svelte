@@ -14,7 +14,7 @@
 
 <style lang="postcss">
 	:global(html) {
-		background-color: theme(colors.stone.50);
+		background-color: theme(colors.stone.100);
 		font-family: 'Montserrat', sans-serif;
 	}
 </style>
