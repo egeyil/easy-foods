@@ -14,34 +14,56 @@ model User {
   name      String
   password  String
   bio       String?
-  likedPost Post[]    @relation("PostLikedUsers")
+  likedPost Recipe[]  @relation("RecipeRatedUsers")
   createdAt DateTime  @default(now())
   updatedAt DateTime  @updatedAt
   image     String?
-  posts     Post[]
+  recipes   Recipe[]
   comments  Comment[] @relation("CommentAuthor")
+  favorites Recipe[]  @relation("FavoriteRecipes")
 
   @@index([id])
 }
 
-model Post {
-  id         String    @id @default(uuid())
-  title      String
-  content    String?
-  image      String?
-  createdAt  DateTime  @default(now())
-  updatedAt  DateTime  @updatedAt
-  author     User      @relation(fields: [authorId], references: [id])
-  authorId   String
-  likedUsers User[]    @relation("PostLikedUsers")
-  likesCount Int       @default(0)
-  published  Boolean   @default(false)
-  comments   Comment[] @relation("CommentPost")
-  category   Category  @relation(fields: [categoryId], references: [id])
-  categoryId String
+model Recipe {
+  id           String     @id @default(uuid())
+  title        String
+  content      String?
+  image        String?
+  createdAt    DateTime   @default(now())
+  updatedAt    DateTime   @updatedAt
+  author       User       @relation(fields: [authorId], references: [id])
+  authorId     String
+  rating       Float      @default(0)
+  ratedUsers   User[]     @relation("RecipeRatedUsers")
+  ratingsCount Int        @default(0)
+  published    Boolean    @default(false)
+  comments     Comment[]  @relation("CommentPost")
+  category     Category   @relation(fields: [categoryId], references: [id])
+  categoryId   String
+  difficulty   Difficulty
+  description  String?
+  ingredients  String?
+  steps        String?
+  tags         String?
+  servings     Int?
+  time         String?
+  recipe       Recipe?    @relation("GoesWith", fields: [recipeId], references: [id], onDelete: NoAction, onUpdate: NoAction)
+  recipeId     String?
+  goesWith     Recipe[]   @relation("GoesWith")
+  favorites    User[]     @relation("FavoriteRecipes")
+  tips         String?
 
+  @@index([recipeId])
   @@index([categoryId])
   @@index([authorId])
+  @@map("Post")
+}
+
+enum Difficulty {
+  EASY
+  MEDIUM
+  HARD
 }
 
 model Comment {
@@ -51,7 +73,7 @@ model Comment {
   updatedAt DateTime @updatedAt
   author    User     @relation(fields: [authorId], references: [id], name: "CommentAuthor")
   authorId  String
-  post      Post     @relation(fields: [postId], references: [id], name: "CommentPost")
+  post      Recipe   @relation(fields: [postId], references: [id], name: "CommentPost")
   postId    String
 
   @@index([authorId])
@@ -63,5 +85,5 @@ model Category {
   name      String
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
-  posts     Post[]
+  posts     Recipe[]
 }
