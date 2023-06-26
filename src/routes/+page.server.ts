@@ -1,6 +1,6 @@
 import PostService from '$lib/server/services/post.service';
 
-export async function load({ params, cookies }) {
+export async function load() {
 	const Post = new PostService();
 	const popularPosts = await Post.getPopularPosts();
 	const recentPosts = await Post.getRecentPosts();

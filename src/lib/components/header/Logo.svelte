@@ -1,3 +1,1 @@
-<div class="text-3xl text-slate-900">
-  <a href="/"><i>Easy Foods</i></a>
-</div>
+<a class="text-3xl text-orange-300" href="/"><i>Easy Foods</i></a>

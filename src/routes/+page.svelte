@@ -7,23 +7,24 @@
 </script>
 
 {#each data.sections as section}
-	<h2 class="text-semibold mb-6 mt-12 border-b border-b-slate-600 pb-2 text-2xl">
-		{section.title}
-	</h2>
-	<RecipeGrid>
-		{#each section.posts as post}
-			<RecipeCard
-				title={post.title}
-				image={post.image || 'https://images.unsplash.com/photo-1546069901-ba9599a7e63c?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=880&q=80'}
-				link={"/recipes/" + post.id}
-				likesCount={post.likesCount}
-				commentsCount={post._count.comments}
-				liked={false}
-			/>
-		{/each}
-	</RecipeGrid>
-
-
+	{#if section?.posts?.length > 0}
+		<h2 class="text-semibold mb-6 mt-12 border-b border-b-slate-600 pb-2 text-2xl">
+			{section.title}
+		</h2>
+		<RecipeGrid>
+			{#each section.posts as post}
+				<RecipeCard
+					title={post.title}
+					image={post.image ||
+						'https://images.unsplash.com/photo-1546069901-ba9599a7e63c?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=880&q=80'}
+					link={'/recipes/' + post.id}
+					likesCount={post.likesCount}
+					commentsCount={post._count.comments}
+					liked={false}
+				/>
+			{/each}
+		</RecipeGrid>
+	{/if}
 {/each}
 
 <!-- 'https://images.unsplash.com/photo-1546069901-ba9599a7e63c?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=880&q=80' -->

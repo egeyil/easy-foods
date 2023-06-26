@@ -2,13 +2,29 @@
 @tailwind components;
 @tailwind utilities;
 
+@layer base {
+	a {
+		@apply link-hover-underline transition-colors hover:text-orange-400;
+	}
+
+	nav a {
+		@apply hover:no-underline;
+	}
+
+	header > a {
+		@apply hover:no-underline;
+	}
+}
 
 @layer components {
-  .card-truncate {
-      overflow: hidden;
-      text-overflow: ellipsis;
-      display: -webkit-box;
-      -webkit-line-clamp: 2;
-      -webkit-box-orient: vertical;
-  }
+	.card-truncate {
+		overflow: hidden;
+		text-overflow: ellipsis;
+		display: -webkit-box;
+		-webkit-line-clamp: 2;
+		-webkit-box-orient: vertical;
+	}
+	.link-hover-underline {
+		@apply decoration-orange-300 decoration-1 underline-offset-4 transition-colors duration-150 hover:text-orange-300 hover:underline;
+	}
 }

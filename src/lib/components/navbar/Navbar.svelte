@@ -7,12 +7,12 @@
 >
 	<a
 		href="/"
-		class="md:py-6 transition-colors duration-150 hover:text-orange-700"
+		class="md:py-6"
 	>
 		Home
 	</a>
 	<NavbarCategories />
-	<a href="/explore" class="md:py-6 transition-colors duration-150 hover:text-orange-700">
+	<a href="/explore" class="md:py-6 ">
 		Explore
 	</a>
 </nav>

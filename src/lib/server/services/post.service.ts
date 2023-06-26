@@ -76,19 +76,55 @@ class PostService {
 							select: {
 								id: true,
 								name: true,
-								image: true,
+								image: true
 							}
 						},
 						id: true,
 						createdAt: true,
 						updatedAt: true,
-						content: true,
+						content: true
 					}
 				},
 				image: true,
 				_count: {
 					select: {
 						comments: true
+					}
+				}
+			}
+		});
+	}
+
+	getAllCategories() {
+		return prisma.category.findMany({
+			select: {
+				id: true,
+				name: true
+			}
+		});
+	}
+
+	getCategory(slug: string) {
+		return prisma.category.findUnique({
+			where: {
+				id: slug
+			},
+			select: {
+				id: true,
+				name: true,
+				posts: {
+					take: 20,
+					select: {
+						id: true,
+						title: true,
+						createdAt: true,
+						likesCount: true,
+						image: true,
+						_count: {
+							select: {
+								comments: true
+							}
+						}
 					}
 				}
 			}

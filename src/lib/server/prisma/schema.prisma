@@ -37,7 +37,10 @@ model Post {
   likesCount Int       @default(0)
   published  Boolean   @default(false)
   comments   Comment[] @relation("CommentPost")
+  category   Category  @relation(fields: [categoryId], references: [id])
+  categoryId String
 
+  @@index([categoryId])
   @@index([authorId])
 }
 
@@ -53,4 +56,12 @@ model Comment {
 
   @@index([authorId])
   @@index([postId])
+}
+
+model Category {
+  id        String   @id @default(uuid())
+  name      String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  posts     Post[]
 }
