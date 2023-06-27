@@ -4,7 +4,6 @@
 	import FaCaretDown from 'svelte-icons/fa/FaCaretDown.svelte';
 	import FaLongArrowAltRight from 'svelte-icons/fa/FaLongArrowAltRight.svelte';
 	import { fly } from 'svelte/transition';
-	import { quintOut } from 'svelte/easing';
 	import { browser } from '$app/environment';
 	import { afterNavigate } from '$app/navigation';
 

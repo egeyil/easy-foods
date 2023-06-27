@@ -30,7 +30,7 @@
 			{#if liked === true}
 				<div class="text-red-700 hover:text-red-800" />
 			{:else}
-				<div class="text-slate-700 hover:text-red-700" />
+				<div class="text-stone-700 hover:text-red-700" />
 			{/if}
 		</button>
 		<a href={link} class="group w-full overflow-hidden">
@@ -42,17 +42,17 @@
 				/>
 			</div>
 			<div class="w-full px-2 py-1.5">
-				<h4 class="text-sm font-medium text-slate-700">{category}</h4>
+				<h4 class="text-sm font-medium text-stone-700">{category}</h4>
 				<div
-					class="mt-1.5 line-clamp-2 w-full text-xl font-semibold text-slate-800 decoration-amber-700 decoration-1 underline-offset-4 transition-colors duration-150 group-hover:underline"
+					class="mt-1.5 line-clamp-2 w-full text-xl font-semibold text-stone-800 decoration-amber-700 decoration-1 underline-offset-4 transition-colors duration-150 group-hover:underline"
 				>
 					{title}
 				</div>
 				<div class="mb-1 mt-2 flex items-center gap-2">
-					<div class="flex items-center text-xs text-slate-800 xl:text-sm">
+					<div class="flex items-center text-xs text-stone-800 xl:text-sm">
 						{ratingsCount} ratings
 					</div>
-					<div class="flex items-center text-xs text-slate-800 xl:text-sm">
+					<div class="flex items-center text-xs text-stone-800 xl:text-sm">
 						{commentsCount} comments
 					</div>
 				</div>
