@@ -8,7 +8,7 @@
 
 {#each data.sections as section}
 	{#if section?.posts?.length > 0}
-		<h2 class="text-semibold mb-6 mt-12 border-b border-b-slate-600 pb-2 text-2xl">
+		<h2 class="text-semibold mb-6 border-b border-b-slate-600 pb-2 text-2xl">
 			{section.title}
 		</h2>
 		<RecipeGrid>

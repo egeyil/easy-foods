@@ -5,7 +5,7 @@
 </script>
 
 <header
-	class="hidden w-full items-center justify-between bg-teal-700 px-5 py-3 sm:flex sm:px-7 md:px-10 md:py-5"
+	class="hidden w-full items-center justify-between border-b border-b-stone-300 px-5 py-3 sm:flex sm:px-7 md:px-10 md:py-5"
 >
 	<Logo />
 

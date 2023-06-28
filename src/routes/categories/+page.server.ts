@@ -1,8 +1,8 @@
-import PostService from '$lib/server/services/post.service';
+import RecipeService from '$lib/server/services/post.service';
 import { redirect } from '@sveltejs/kit';
 
 export async function load() {
-	const Post = new PostService();
+	const Post = new RecipeService();
 	const categories = await Post.getAllCategories();
 
   if (!categories || categories.length === 0) {

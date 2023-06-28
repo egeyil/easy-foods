@@ -1,9 +1,13 @@
-import PostService from '$lib/server/services/post.service';
+import RecipeService from '$lib/server/services/post.service';
 
 export async function load() {
-	const Post = new PostService();
-	const popularPosts = await Post.getPopularPosts();
-	const recentPosts = await Post.getRecentPosts();
+	const Post = new RecipeService();
+	const popularPosts = await Post.getPopularRecipes();
+	const recentPosts = await Post.getRecentRecipes();
+
+	console.log('popularPosts', popularPosts);
+	console.log('recentPosts', recentPosts);
+
 
 	return {
 		sections: [

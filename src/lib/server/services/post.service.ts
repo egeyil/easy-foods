@@ -1,7 +1,7 @@
 import prisma from '$lib/server/database';
 
-class PostService {
-	private previewPostFields = {
+class RecipeService {
+	private previewRecipeFields = {
 		id: true,
 		title: true,
 		createdAt: true,
@@ -16,7 +16,7 @@ class PostService {
 		}
 	};
 
-	getPopularPosts(userId: string) {
+	getPopularRecipes(userId?: string) {
 		return prisma.recipe.findMany({
 			where: {
 				AND: {
@@ -35,11 +35,11 @@ class PostService {
 				ratingsCount: 'desc'
 			},
 			take: 12,
-			select: this.previewPostFields
+			select: this.previewRecipeFields
 		});
 	}
 
-	getRecentPosts(userId: string) {
+	getRecentRecipes(userId?: string) {
 		return prisma.recipe.findMany({
 			where: {
 				published: true,
@@ -53,11 +53,11 @@ class PostService {
 				createdAt: 'desc'
 			},
 			take: 12,
-			select: this.previewPostFields
+			select: this.previewRecipeFields
 		});
 	}
 
-	getPost(slug: string, userId: string | undefined) {
+	getRecipe(slug: string, userId: string | undefined) {
 		return prisma.recipe.findUnique({
 			where: {
 				id: slug
@@ -105,7 +105,13 @@ class PostService {
 		return prisma.category.findMany({
 			select: {
 				id: true,
-				name: true
+				name: true,
+				image: true,
+				_count: {
+					select: {
+						recipes: true
+					}
+				}
 			}
 		});
 	}
@@ -120,11 +126,11 @@ class PostService {
 				name: true,
 				posts: {
 					take: 20,
-					select: this.previewPostFields
+					select: this.previewRecipeFields
 				}
 			}
 		});
 	}
 }
 
-export default PostService;
+export default RecipeService;

@@ -1,13 +1,14 @@
 <script lang="ts">
 	import type { PageData } from './$types';
+	import CategoryCard from '$lib/components/previews/CategoryCard.svelte';
 
 	export let data: PageData;
 
 	const categories = data?.categories;
 </script>
 
-{#each categories as category}
-	<h2 class="text-semibold mb-6 mt-12 border-b border-b-slate-600 pb-2 text-2xl">
-    {category.name}
-	</h2>
-{/each}
+<section class="grid grid-cols-3 gap-3">
+	{#each categories as category}
+		<CategoryCard {...category} />
+	{/each}
+</section>

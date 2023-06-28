@@ -5,7 +5,7 @@
 </script>
 
 <nav
-	class="sticky top-0 z-20 border-b border-b-stone-300 bg-cyan-100 px-2 text-xl sm:gap-12"
+	class="sticky top-0 z-20 border-b border-b-stone-300 px-2 text-xl sm:gap-12"
 >
 	<div class="flex items-center justify-center gap-8 md:gap-16">
 		<a href="/" class="py-2.5 sm:py-3.5"> Home </a>
