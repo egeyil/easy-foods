@@ -33,19 +33,19 @@
 </script>
 
 <div class="profile relative">
-	<button class="h-6 w-6 {open ? 'text-lime-800' : 'text-stone-800'}" on:click={handleClick}>
+	<button class="h-6 w-6 {open ? "text-amber-300" : "text-green-200"} hover:text-amber-300" on:click={handleClick}>
 		<FaRegUser />
 	</button>
 	{#if open}
 		<ul
-			class="absolute left-0 flex -translate-x-1/2 translate-y-3 transform flex-col gap-1 overflow-hidden rounded-md border border-stone-300 bg-white shadow-md"
+			class="absolute z-30 left-0 flex -translate-x-1/2 translate-y-3 transform flex-col gap-1 overflow-hidden rounded-md border border-stone-300 bg-white shadow-md"
 		>
 			<a
-				class="px-3 py-3 text-stone-600 transition-colors hover:bg-stone-100 hover:text-lime-800"
+				class="px-3 py-3 text-stone-600 transition-colors hover:bg-stone-100 hover:text-amber-700"
 				href="/profile">Profile</a
 			>
 			<a
-				class="px-3 py-3 text-stone-600 transition-colors hover:bg-stone-100 hover:text-lime-800"
+				class="px-3 py-3 text-stone-600 transition-colors hover:bg-stone-100 hover:text-amber-700"
 				href="/logout">Logout</a
 			>
 		</ul>
