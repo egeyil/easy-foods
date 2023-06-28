@@ -12,6 +12,6 @@
 <CategoryImage numRecipes={category._count.recipes} image={category.image} name={category.name} />
 <RecipeGrid>
 	{#each category.recipes as recipe}
-		<RecipeCard {...recipe} liked={false} />
+		<RecipeCard {...recipe} />
 	{/each}
 </RecipeGrid>

@@ -20,7 +20,7 @@
 <Header />
 <DesktopNavbar categories={categories}/>
 <MobileNavbar />
-<main class="mx-auto mb-4 mt-10 w-full px-5 md:w-3/4 md:px-0">
+<main class="mx-auto mb-4 mt-10 w-full px-5 sm:w-3/4 lg:w-1/2 md:px-0">
 	<slot />
 </main>
 <ScrollToTopBtn />

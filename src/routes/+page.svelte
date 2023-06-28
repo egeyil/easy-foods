@@ -13,7 +13,7 @@
 		</h2>
 		<RecipeGrid>
 			{#each section.posts as post}
-				<RecipeCard {...post} liked={false} />
+				<RecipeCard {...post} />
 			{/each}
 		</RecipeGrid>
 	{/if}
