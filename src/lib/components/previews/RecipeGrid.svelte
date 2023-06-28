@@ -1,3 +1,3 @@
-<div class="gap-3 grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 w-full">
+<section class="grid w-full mb-12 grid-cols-1 gap-3 md:grid-cols-2 xl:grid-cols-3">
 	<slot />
-</div>
+</section>

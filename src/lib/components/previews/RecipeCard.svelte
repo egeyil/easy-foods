@@ -43,22 +43,22 @@
 					class="h-80 w-full object-cover transition-all duration-300 hover:scale-105"
 				/>
 			</div>
-			<div class="w-full px-2 py-1.5">
+			<section class="w-full px-2 py-1.5">
 				<h4>{category}</h4>
 				<h3
 					class="mt-1.5 line-clamp-2 w-full text-xl font-semibold text-stone-800 decoration-amber-700 decoration-1 underline-offset-4 transition-colors duration-150 group-hover:underline"
 				>
 					{title}
 				</h3>
-				<div class="mb-1 mt-2 flex items-center gap-2">
+				<aside class="mb-1 mt-2 flex items-center gap-2">
 					<p class="flex items-center text-xs text-stone-800 xl:text-sm">
 						{ratingsCount} ratings
 					</p>
 					<p class="flex items-center text-xs text-stone-800 xl:text-sm">
 						{commentsCount} comments
 					</p>
-				</div>
-			</div>
+				</aside>
+			</section>
 		</a>
 	</article>
 {/if}

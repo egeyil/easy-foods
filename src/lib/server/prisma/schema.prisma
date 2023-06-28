@@ -85,10 +85,16 @@ model Comment {
 }
 
 model Category {
-  id        String   @id @default(uuid())
-  name      String
-  image     String?
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
-  recipes    Recipe[]
+  id               String     @id @default(uuid())
+  name             String
+  image            String?
+  createdAt        DateTime   @default(now())
+  updatedAt        DateTime   @updatedAt
+  recipes          Recipe[]
+  subCategories    Category[] @relation("SubCategory")
+  parentCategory   Category?  @relation("SubCategory", fields: [parentCategoryId], references: [id], onDelete: NoAction, onUpdate: NoAction)
+  parentCategoryId String?
+  isSubCategory      Boolean    @default(false)
+
+  @@index([parentCategoryId])
 }

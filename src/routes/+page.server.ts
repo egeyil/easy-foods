@@ -1,4 +1,4 @@
-import RecipeService from '$lib/server/services/post.service';
+import RecipeService from '$lib/server/services/recipe.service';
 
 export async function load() {
 	const Post = new RecipeService();

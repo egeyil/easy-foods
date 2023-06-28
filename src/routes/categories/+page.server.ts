@@ -1,4 +1,4 @@
-import RecipeService from '$lib/server/services/post.service';
+import RecipeService from '$lib/server/services/recipe.service';
 import { redirect } from '@sveltejs/kit';
 
 export async function load() {

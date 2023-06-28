@@ -17,8 +17,8 @@
 {#if visible}
 	<a
 		in:fly={{ y: 100, duration: 400, easing: quadOut, delay: 100 }}
-		href="/{name.toLocaleLowerCase()}"
-		class="overflow-hidden rounded-md shadow transition-all duration-150 hover:shadow-lg"
+		href={`/categories/${name}`}
+		class="overflow-hidden rounded-md shadow transition-all duration-150 hover:shadow-md"
 	>
 		<img
 			src={image ||

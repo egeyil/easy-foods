@@ -9,6 +9,11 @@ class RecipeService {
 		image: true,
 		difficulty: true,
 		tags: true,
+		category: {
+			select: {
+				name: true
+			}
+		},
 		_count: {
 			select: {
 				comments: true
@@ -101,6 +106,24 @@ class RecipeService {
 		});
 	}
 
+	getAllParentCategories() {
+		return prisma.category.findMany({
+			where: {
+				isSubCategory: false
+			},
+			select: {
+				id: true,
+				name: true,
+				image: true,
+				_count: {
+					select: {
+						recipes: true
+					}
+				}
+			}
+		});
+	}
+
 	getAllCategories() {
 		return prisma.category.findMany({
 			select: {
@@ -124,7 +147,13 @@ class RecipeService {
 			select: {
 				id: true,
 				name: true,
-				posts: {
+				image: true,
+				_count: {
+					select: {
+						recipes: true
+					}
+				},
+				recipes: {
 					take: 20,
 					select: this.previewRecipeFields
 				}

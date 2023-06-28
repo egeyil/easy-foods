@@ -1,6 +1,5 @@
 <script lang="ts">
 	//@ts-ignore
-	import NavbarCategories from '$lib/components/navbar/NavbarCategories.svelte';
 	import MobileSearch from '$lib/components/search/MobileSearch.svelte';
 	import HamburgerMenu from '$lib/components/navbar/HamburgerMenu.svelte';
 	import Logo from '$lib/components/header/Logo.svelte';

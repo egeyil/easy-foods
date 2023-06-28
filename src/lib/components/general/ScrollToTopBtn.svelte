@@ -10,7 +10,7 @@
 		scrollPosition = window.scrollY;
 	};
 
-	if (browser) {
+	$: if (browser) {
 		onMount(() => {
 			window.addEventListener('scroll', listenToScroll);
 		});
@@ -24,7 +24,7 @@
 {#if scrollPosition > 150}
 	<button
 		transition:fade
-		class="fixed bottom-12 right-5 z-50 h-9 w-9 rounded-full bg-teal-700 p-1.5 text-white shadow-md transition-all duration-300 hover:bg-teal-600"
+		class="fixed bottom-12 right-5 z-50 h-9 w-9 rounded-full bg-amber-700 p-1.5 text-white shadow-md transition-all duration-300 hover:bg-amber-900 hover:text-white"
 		on:click={() => {
 			window.scrollTo({
 				top: 0,
