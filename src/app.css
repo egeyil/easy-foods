@@ -19,13 +19,21 @@
 		@apply hover:no-underline;
 	}
 
-	/* nav > div > a {
-		@apply py-3.5;
-	} */
+	h2 {
+		@apply mb-6 border-b border-b-stone-400 pb-2 text-2xl font-normal text-stone-600;
+	}
 
-	/* nav > div > a > div {
-		@apply ;
-	} */
+	h3 {
+		@apply text-2xl text-stone-700;
+	}
+
+	h4 {
+		@apply text-sm font-medium text-stone-700;
+	}
+
+	p {
+		@apply text-sm text-stone-600;
+	}
 }
 
 @layer components {

@@ -7,6 +7,7 @@
 	const categories = data?.categories;
 </script>
 
+<h2>All Categories</h2>
 <section class="grid grid-cols-3 gap-3">
 	{#each categories as category}
 		<CategoryCard {...category} />
