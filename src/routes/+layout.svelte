@@ -12,6 +12,11 @@
 
 </script>
 
+<svelte:head>
+  <title>Easy Foods!</title>
+  <meta name="description" content="Finding good recipes made fun." />
+</svelte:head>
+
 <Header />
 <DesktopNavbar categories={categories}/>
 <MobileNavbar />

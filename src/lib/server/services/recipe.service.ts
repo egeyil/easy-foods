@@ -22,6 +22,25 @@ class RecipeService {
 		}
 	};
 
+	private recipeSelectFields = {
+		id: true,
+		title: true,
+		image: true,
+		createdAt: true,
+		updatedAt: true,
+		description: true,
+		rating: true,
+		ratingsCount: true,
+		difficulty: true,
+		tags: true,
+		content: true,
+		ingredients: true,
+		steps: true,
+		servings: true,
+		time: true,
+		tips: true,
+	};
+
 	getPopularRecipes(userId?: string) {
 		return prisma.recipe.findMany({
 			where: {
@@ -68,7 +87,7 @@ class RecipeService {
 			where: {
 				id: slug
 			},
-			include: {
+			select: {
 				comments: {
 					take: 5,
 					orderBy: {
@@ -88,6 +107,12 @@ class RecipeService {
 						content: true
 					}
 				},
+				category: {
+					select: {
+						id: true,
+						name: true
+					}
+				},
 				favorites: {
 					where: {
 						NOT: {
@@ -102,7 +127,8 @@ class RecipeService {
 					select: {
 						comments: true
 					}
-				}
+				},
+				...this.recipeSelectFields
 			}
 		});
 	}
@@ -186,13 +212,6 @@ class RecipeService {
 				]
 			},
 			select: this.previewRecipeFields
-			// include: {
-			// 	category: {
-			// 		select: {
-			// 			name: true
-			// 		}
-			// 	}
-			// }
 		});
 	}
 }
