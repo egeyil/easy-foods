@@ -23,6 +23,5 @@
 <style lang="postcss">
 	:global(html) {
 		font-family: 'Montserrat', sans-serif;
-		scroll-behavior: smooth;
 	}
 </style>

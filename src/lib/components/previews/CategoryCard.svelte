@@ -3,6 +3,7 @@
 	import { quadOut } from 'svelte/easing';
 	import { fly } from 'svelte/transition';
 
+	export let id: string;
 	export let name: string;
 	export let image: string | null;
 	export let _count: { recipes: number };
@@ -17,7 +18,7 @@
 {#if visible}
 	<a
 		in:fly={{ y: 100, duration: 400, easing: quadOut, delay: 100 }}
-		href={`/categories/${name}`}
+		href="/categories/{id}"
 		class="overflow-hidden rounded-md shadow transition-all duration-150 hover:shadow-md"
 	>
 		<img

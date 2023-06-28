@@ -13,15 +13,7 @@
 		</h2>
 		<RecipeGrid>
 			{#each section.posts as post}
-				<RecipeCard
-					title={post.title}
-					image={post.image ||
-						'https://images.unsplash.com/photo-1546069901-ba9599a7e63c?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=880&q=80'}
-					link={'/recipes/' + post.id}
-					ratingsCount={post.ratingsCount}
-					commentsCount={post._count.comments}
-					liked={false}
-				/>
+				<RecipeCard {...post} liked={false} />
 			{/each}
 		</RecipeGrid>
 	{/if}

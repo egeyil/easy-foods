@@ -6,17 +6,18 @@ class RecipeService {
 		title: true,
 		createdAt: true,
 		ratingsCount: true,
+		rating: true,
 		image: true,
 		difficulty: true,
 		tags: true,
-		category: {
-			select: {
-				name: true
-			}
-		},
 		_count: {
 			select: {
 				comments: true
+			}
+		},
+		category: {
+			select: {
+				name: true
 			}
 		}
 	};
@@ -62,7 +63,7 @@ class RecipeService {
 		});
 	}
 
-	getRecipe(slug: string, userId: string | undefined) {
+	getRecipe(slug: string, userId?: string) {
 		return prisma.recipe.findUnique({
 			where: {
 				id: slug
@@ -158,6 +159,40 @@ class RecipeService {
 					select: this.previewRecipeFields
 				}
 			}
+		});
+	}
+
+	searchRecipes(query: string) {
+		return prisma.recipe.findMany({
+			where: {
+				AND: [
+					{
+						OR: [
+							{
+								title: {
+									contains: query
+								}
+							},
+							{
+								content: {
+									contains: query
+								}
+							}
+						]
+					},
+					{
+						published: true
+					}
+				]
+			},
+			select: this.previewRecipeFields
+			// include: {
+			// 	category: {
+			// 		select: {
+			// 			name: true
+			// 		}
+			// 	}
+			// }
 		});
 	}
 }

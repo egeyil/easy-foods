@@ -2,13 +2,18 @@
 	import { onMount } from 'svelte';
 	import { fly } from 'svelte/transition';
 	import { quadOut } from 'svelte/easing';
+	import calculateStars from '$lib/client/calculateStars';
+
+	export let id: string;
 	export let title: string;
-	export let image: string;
-	export let link: string;
+	export let image: string | null;
 	export let ratingsCount: number;
+	export let rating: number;
 	export let liked: boolean;
-	export let category: string = 'Category';
+	export let category: { name: string };
 	export let commentsCount: number = 0;
+
+	const { filledStars, halfStars } = calculateStars(rating);
 
 	let visible = false;
 
@@ -35,16 +40,17 @@
 				<div class="text-stone-700 hover:text-red-700" />
 			{/if}
 		</button>
-		<a href={link} class="group w-full overflow-hidden">
+		<a href="/recipes/{id}" class="group w-full overflow-hidden">
 			<div class="h-80 w-full overflow-hidden">
 				<img
-					src={image}
+					src={image ||
+						'https://images.unsplash.com/photo-1523049673857-eb18f1d7b578?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1075&q=80'}
 					alt="Picture of recipe {title}"
 					class="h-80 w-full object-cover transition-all duration-300 hover:scale-105"
 				/>
 			</div>
 			<section class="w-full px-2 py-1.5">
-				<h4>{category}</h4>
+				<h4>{category?.name}</h4>
 				<h3
 					class="mt-1.5 line-clamp-2 w-full text-xl font-semibold text-stone-800 decoration-amber-700 decoration-1 underline-offset-4 transition-colors duration-150 group-hover:underline"
 				>

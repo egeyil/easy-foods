@@ -8,18 +8,18 @@
 		if (searchText === '') {
 			return;
 		}
-		await goto(`/search/${searchText.toLocaleLowerCase()}`);
+		await goto(`/search?q=${searchText.toLocaleLowerCase()}`);
 
 		searchText = '';
 	};
 </script>
 
 <div
-	class="hidden items-center justify-center rounded-md border border-transparent bg-stone-100 px-1 py-1 transition-colors duration-150 focus-within:outline focus-within:outline-2 focus-within:outline-stone-700 hover:border-stone-600 sm:flex"
+	class="hidden items-center justify-center rounded-md border border-transparent bg-stone-100 px-1 py-1 transition-colors duration-150 focus-within:border-stone-600 hover:border-stone-600 sm:flex"
 >
 	<button
 		on:click={handleSearch}
-		class="block h-4 w-4 text-lime-700 hover:text-green-700 focus:outline-none"
+		class="block h-4 w-4 text-amber-600 hover:text-amber-900"
 	>
 		<FaSearch />
 	</button>

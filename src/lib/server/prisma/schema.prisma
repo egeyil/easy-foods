@@ -1,5 +1,5 @@
 generator client {
-  provider = "prisma-client-js"
+  provider        = "prisma-client-js"
 }
 
 datasource db {
@@ -94,7 +94,7 @@ model Category {
   subCategories    Category[] @relation("SubCategory")
   parentCategory   Category?  @relation("SubCategory", fields: [parentCategoryId], references: [id], onDelete: NoAction, onUpdate: NoAction)
   parentCategoryId String?
-  isSubCategory      Boolean    @default(false)
+  isSubCategory    Boolean    @default(false)
 
   @@index([parentCategoryId])
 }

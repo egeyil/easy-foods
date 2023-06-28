@@ -1,6 +1,7 @@
 <script lang="ts">
 	import { browser } from '$app/environment';
 	import { afterNavigate } from '$app/navigation';
+	
 	import FaRegUser from 'svelte-icons/fa/FaRegUser.svelte';
 
 	let open = false;
@@ -33,7 +34,7 @@
 </script>
 
 <div class="profile relative">
-	<button class="h-6 w-6 {open ? "text-amber-300" : "text-green-200"} hover:text-amber-300" on:click={handleClick}>
+	<button class="h-6 w-6 text-amber-800 hover:text-amber-700" on:click={handleClick}>
 		<FaRegUser />
 	</button>
 	{#if open}
