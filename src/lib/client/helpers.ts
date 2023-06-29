@@ -1,4 +1,4 @@
-const calculateStars = (rating: number) => {
+export const calculateStars = (rating: number) => {
 	const filledStars = Math.floor(rating);
 	const halfStar = rating - filledStars > 0.49 ? 1 : 0;
 
@@ -8,4 +8,6 @@ const calculateStars = (rating: number) => {
 	return { filledStarArray, emptyStarArray, halfStar };
 };
 
-export default calculateStars;
+export const capitalize = (str: string) => {
+  return str.charAt(0).toUpperCase() + str.slice(1);
+};

@@ -34,7 +34,7 @@
 </script>
 
 <div class="profile relative">
-	<button class="h-6 w-6 text-amber-800 hover:text-amber-700" on:click={handleClick}>
+	<button class="h-6 w-6 text-amber-600 hover:text-amber-900" on:click={handleClick}>
 		<FaRegUser />
 	</button>
 	{#if open}
