@@ -32,13 +32,12 @@ class RecipeService {
 		rating: true,
 		ratingsCount: true,
 		difficulty: true,
-		tags: true,
 		content: true,
 		ingredients: true,
 		steps: true,
 		servings: true,
 		time: true,
-		tips: true,
+		tips: true
 	};
 
 	getPopularRecipes(userId?: string) {
@@ -88,6 +87,20 @@ class RecipeService {
 				id: slug
 			},
 			select: {
+				id: true,
+				title: true,
+				image: true,
+				createdAt: true,
+				updatedAt: true,
+				description: true,
+				rating: true,
+				ratingsCount: true,
+				difficulty: true,
+				content: true,
+				steps: true,
+				servings: true,
+				time: true,
+				tips: true,
 				comments: {
 					take: 5,
 					orderBy: {
@@ -104,7 +117,8 @@ class RecipeService {
 						id: true,
 						createdAt: true,
 						updatedAt: true,
-						content: true
+						content: true,
+						likes: true
 					}
 				},
 				category: {
@@ -115,20 +129,30 @@ class RecipeService {
 				},
 				favorites: {
 					where: {
-						NOT: {
-							id: userId
-						}
+						id: userId
 					},
 					select: {
 						id: true
 					}
 				},
-				_count: {
+				tags: {
 					select: {
-						comments: true
+						id: true,
+						name: true,
 					}
 				},
-				...this.recipeSelectFields
+				ingredients: {
+					select: {
+						id: true,
+						name: true,
+					}
+				},
+				_count: {
+					select: {
+						comments: true,
+						favorites: true
+					}
+				}
 			}
 		});
 	}

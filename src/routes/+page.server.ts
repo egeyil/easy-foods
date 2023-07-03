@@ -5,7 +5,6 @@ export async function load() {
 	const popularPosts = await Post.getPopularRecipes();
 	const recentPosts = await Post.getRecentRecipes();
 
-
 	return {
 		sections: [
 			{

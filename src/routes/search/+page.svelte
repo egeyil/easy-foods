@@ -10,7 +10,7 @@
 	{#each data.recipes as recipe (recipe.id)}
 		<RecipeCard 
 			{...recipe}
-      liked={false}
+      bookmarked={false}
 		/>
 	{/each}
 </RecipeGrid>

@@ -10,8 +10,6 @@
 		open = !open;
 	};
 
-	$: console.log(open);
-
 	$: {
 		if (browser) {
 			if (open) {

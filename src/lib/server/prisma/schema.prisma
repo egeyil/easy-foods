@@ -1,5 +1,5 @@
 generator client {
-  provider        = "prisma-client-js"
+  provider = "prisma-client-js"
 }
 
 datasource db {
@@ -26,38 +26,56 @@ model User {
 }
 
 model Recipe {
-  id                     String     @id @default(uuid())
+  id                     Int          @id @default(autoincrement())
   title                  String
   content                String
   image                  String?
-  createdAt              DateTime   @default(now())
-  updatedAt              DateTime   @updatedAt
-  author                 User       @relation(fields: [authorId], references: [id])
+  createdAt              DateTime     @default(now())
+  updatedAt              DateTime     @updatedAt
   authorId               String
-  rating                 Float      @default(0)
-  ratedUsers             User[]     @relation("RecipeRatedUsers")
-  ratingsCount           Int        @default(0)
-  published              Boolean    @default(false)
-  comments               Comment[]  @relation("CommentPost")
-  category               Category   @relation(fields: [categoryId], references: [id])
+  rating                 Float        @default(0)
+  ratingsCount           Int          @default(0)
+  published              Boolean      @default(false)
   categoryId             String
-  difficulty             Difficulty
   description            String?
-  ingredients            String?
-  steps                  String?
-  tags                   String?
+  steps                  Json?
   servings               Int?
   time                   String?
-  goesWithParentRecipe   Recipe?    @relation("GoesWith", fields: [goesWithParentRecipeId], references: [id], onDelete: NoAction, onUpdate: NoAction)
-  goesWithParentRecipeId String?
-  goesWith               Recipe[]   @relation("GoesWith")
-  favorites              User[]     @relation("FavoriteRecipes")
-  tips                   String?
+  goesWithParentRecipeId Int?
+  tips                   Json?
+  ingredients            Ingredient[] @relation("RecipeTags")
+  author                 User         @relation(fields: [authorId], references: [id], onDelete: Cascade)
+  ratedUsers             User[]       @relation("RecipeRatedUsers")
+  comments               Comment[]    @relation("CommentPost")
+  category               Category     @relation(fields: [categoryId], references: [id])
+  difficulty             Difficulty
+  tags                   Tag[]        @relation("RecipeTags")
+  goesWith               Recipe[]     @relation("GoesWith")
+  goesWithParentRecipe   Recipe?      @relation("GoesWith", fields: [goesWithParentRecipeId], references: [id], onDelete: NoAction, onUpdate: NoAction)
+  favorites              User[]       @relation("FavoriteRecipes")
+  recipeId               Int?
 
   @@index([goesWithParentRecipeId])
   @@index([categoryId])
   @@index([authorId])
   @@map("Post")
+}
+
+model Ingredient {
+  id        Int      @id @default(autoincrement())
+  name      String
+  quantity  String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  recipes   Recipe[] @relation("RecipeTags")
+}
+
+model Tag {
+  id        Int      @id @default(autoincrement())
+  name      String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  recipes   Recipe[] @relation("RecipeTags")
 }
 
 enum Difficulty {
@@ -71,17 +89,18 @@ model Comment {
   content         String
   createdAt       DateTime  @default(now())
   updatedAt       DateTime  @updatedAt
-  author          User      @relation(fields: [authorId], references: [id], name: "CommentAuthor")
+  author          User      @relation(fields: [authorId], references: [id], name: "CommentAuthor", onDelete: Cascade)
   authorId        String
-  post            Recipe    @relation(fields: [postId], references: [id], name: "CommentPost")
-  postId          String
+  recipe          Recipe    @relation(fields: [recipeId], references: [id], name: "CommentPost", onDelete: Cascade)
+  recipeId        Int
   parentComment   Comment?  @relation("SubComment", fields: [parentCommentId], references: [id], onDelete: NoAction, onUpdate: NoAction)
   parentCommentId String?
   subComments     Comment[] @relation("SubComment")
+  likes           Int       @default(0)
 
   @@index([parentCommentId])
   @@index([authorId])
-  @@index([postId])
+  @@index([recipeId])
 }
 
 model Category {
